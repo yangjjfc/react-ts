@@ -1,0 +1,34 @@
+.layout-container {
+    .layout-sider {
+        height: 100vh;
+        overflow: auto;
+        position: fixed;
+        left: 0;
+        .logo {
+            height: 32px;
+            background: rgba(255, 255, 255, .2);
+            margin: 16px;
+        }
+    }
+    &-right {
+        margin-left: 200px;
+        &.retraction {
+            margin-left: 80px;
+            transition: all .2s;
+        }
+        .layout-header {
+            background: #fff;
+            padding: 0;
+        }
+        .trigger {
+            font-size: 18px;
+            line-height: 64px;
+            padding: 0 24px;
+            cursor: pointer;
+            transition: color .3s;
+            &:hover {
+                color: #1890ff;
+            }
+        }
+    }
+}
