@@ -5,7 +5,7 @@ import { USERINFO } from '../action'
 function currentUser(state = {}, action) {
     switch (action.type) {
         case USERINFO:
-            return {...action.msg};
+            return { ...action.msg };
             break;
         default:
             return state;
@@ -16,7 +16,7 @@ function currentUser(state = {}, action) {
 
 
 const rootReducer = combineReducers({
-  currentUser, //currentUser(state.currentUser, action)
+    currentUser, //currentUser(state.currentUser, action)
 })
 
 export default rootReducer

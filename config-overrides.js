@@ -5,6 +5,7 @@ const { getLoader, paths } = require("react-app-rewired");
 const rewireLess = require('react-app-rewire-less');
 const rewireSass = require('react-app-rewire-scss');
 const rewireAliases = require('react-app-rewire-aliases');
+const WebpackBar = require('webpackbar');
 
 
 module.exports = function override(config, env) {
@@ -45,6 +46,7 @@ module.exports = function override(config, env) {
         '@': path.resolve(__dirname, `${paths.appSrc}`)
     })(config, env);
 
+    config.plugins = [...config.plugins, ...[new WebpackBar()]]
 
     return config;
 }

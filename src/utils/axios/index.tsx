@@ -3,13 +3,13 @@
  */
 import axios from 'axios';
 import Interceptor from './config';
-const store: any = {};
+import { store } from '../../index';
 // 初始化拦截器
 const TimeOut = 10000;
 // tslint:disable-next-line:no-unused-expression
 new Interceptor(TimeOut);
 
-type Params = (url: string, data: any, header: any, type: string) => void;
+type Params = (url: string, data?: any, header?: any, type?: string) => any;
 let Http: Params;
 
 /**
@@ -21,7 +21,7 @@ let Http: Params;
  * @param {*} header 添加头部信息
  */
 Http = async (url, data = {}, header = {}, type = 'post') => {
-  const { currentUserInfo } = store.getState();
+  const { currentUser } = store.getState();
   let headers = {
     'X-Requested-With': 'XMLHttpRequest',
     'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ Http = async (url, data = {}, header = {}, type = 'post') => {
     ...header
   };
   // 添加header token
-  const token = currentUserInfo.token || '';
+  const token = currentUser.token || '';
   if (token) {
     headers = Object.assign(headers, { jtoken: token });
   }

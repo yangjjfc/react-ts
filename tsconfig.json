@@ -4,6 +4,7 @@
     "outDir": "build/dist",
     "module": "esnext",
     "target": "es5",
+    "experimentalDecorators": true,
     "lib": [
       "es6",
       "dom"
@@ -15,6 +16,7 @@
     "rootDir": "src",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
+    "allowUnreachableCode": true,
     "noImplicitThis": true,
     "noImplicitAny": false,
     "importHelpers": true,

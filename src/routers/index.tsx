@@ -1,17 +1,25 @@
 import * as React from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import * as Loadable from 'react-loadable'; //懒加载
+
+import Login from '../pages/login';
+
+const LoadableComponent = Loadable({
+  loader: () => import('../pages/dashboard'),
+  loading: (() => null),
+});
+
 // import Table from '../pages/table/table'
 // import Auth from '../pages/login';
-import App from '../pages/dashboard';
 // import Dashboard from '../pages/dashboard'
 
 const Routes = (
   <BrowserRouter keyLength={12}>
     <Switch>
-      <Route exact={true} path='/' component={App} />
-      <Route path='/app/login' component={App} />
-      <Route path='/app/form' component={App} />
-      <Route path='/app/table' component={App} />
+      <Route exact={true} path='/' component={Login} />
+      <Route path='/app/login' component={LoadableComponent} />
+      <Route path='/app/form' component={LoadableComponent} />
+      <Route path='/app/table' component={LoadableComponent} />
     </Switch>
   </BrowserRouter>
 );

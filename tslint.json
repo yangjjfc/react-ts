@@ -132,7 +132,8 @@
     ],
     "variable-name": [
       true,
-      "allow-pascal-case"
+      "allow-pascal-case",
+      "allow-leading-underscore"
     ],
     "no-string-literal": false,
     "no-require-imports": true,
@@ -154,8 +155,7 @@
     "exclude": [
       "config/**/*.js",
       "node_modules/**",
-      "coverage/lcov-report/*.js",
-      "*.json"
+      "coverage/lcov-report/*.js"
     ]
   }
 }

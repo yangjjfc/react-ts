@@ -1,11 +1,36 @@
-.login-form {
-    max-width: 300px;
-}
-
-.login-form-forgot {
-    float: right;
-}
-
-.login-form-button {
-    width: 100%;
+.auth_box {
+    background: rgba(29, 144, 230, 0.38);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    .auth_title {
+        font-size: 38px;
+        text-align: center;
+        color: #f00;
+        margin-top: 200px;
+        text-shadow: 0px 0px 2px #FF0000;
+        letter-spacing: 0.1em;
+    }
+    .auth_form {
+        width: 410px;
+        margin: 20px auto;
+        border: 1px #a5b7c9 solid;
+        padding: 40px 40px 10px;
+        background: #fff;
+        .imageCode {
+            height: 30px;
+            margin: 0 10px;
+        }
+        .errorMsg {
+            margin-bottom: 24px;
+        }
+        .login-form-forgot {
+            float: right;
+        }
+    }
+    button {
+        width: 100%
+    }
 }

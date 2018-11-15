@@ -13,3 +13,6 @@
 - 复杂 React 应用中的TypeScript 3.0实践 https://zhuanlan.zhihu.com/p/42141179
 https://www.jianshu.com/p/c5001d40ab25
 https://blog.csdn.net/zw52yany/article/details/78688837 tslint
+
+
+- react-loadable: https://github.com/jamiebuilds/react-loadable //按需加载组件  

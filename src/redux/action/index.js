@@ -13,7 +13,7 @@ export const setCurrentUser = msg => {
 //获取初始的token和clientId
 export const getUser = () => {
     return dispatch => {
-        $.post('currentUser', {}).then(result => {
+        $('currentUser', {}).then(result => {
             dispatch(setCurrentUser(result.data));
         })
     }
@@ -22,7 +22,7 @@ export const getUser = () => {
 //异步action暂时无法解决
 export const login = (data = {}) => {
     return dispatch => {
-        return $.post('login', data).then(result => {
+        return $('login', data).then(result => {
             if (result.code === 'SUCCESS') {
                 dispatch(setCurrentUser(result.data));
             }
