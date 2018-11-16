@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
-import * as Loadable from 'react-loadable'; //懒加载
+import * as Loadable from 'react-loadable'; //懒加载1
 
 import Login from '../pages/login';
 
