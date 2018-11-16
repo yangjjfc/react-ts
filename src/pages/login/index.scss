@@ -6,18 +6,21 @@
     left: 0;
     right: 0;
     bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     .auth_title {
         font-size: 38px;
         text-align: center;
         color: #f00;
-        margin-top: 200px;
         text-shadow: 0px 0px 2px #FF0000;
         letter-spacing: 0.1em;
     }
     .auth_form {
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
         width: 410px;
         margin: 20px auto;
-        border: 1px #a5b7c9 solid;
         padding: 30px 30px 0;
         background: #fff;
         .imageCode {
