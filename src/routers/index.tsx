@@ -12,9 +12,9 @@ const LoadableComponent = Loadable({
 // import Table from '../pages/table/table'
 // import Auth from '../pages/login';
 // import Dashboard from '../pages/dashboard'
-
+const supportsHistory = 'pushState' in window.history;
 const Routes = (
-  <BrowserRouter keyLength={12}>
+  <BrowserRouter keyLength={12} forceRefresh={!supportsHistory}>
     <Switch>
       <Route exact={true} path='/' component={Login} />
       <Route path='/app/login' component={LoadableComponent} />
