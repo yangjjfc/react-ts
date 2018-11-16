@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import $http from 'src/utils/axios/index';
 import encryption from 'src/utils/custom/encryption';
 
-import * as actions from '../../redux/action/index';
+import * as actions from 'src/store/action/index';
 import { Form, Icon, Input, Button, Checkbox, Row, Col, Alert } from 'antd';
 import './index.scss';
 
-const { getUser, setCurrentUser } = actions;
+const { getUser, setUser } = actions;
 const FormItem = Form.Item;
 
 // interface ILoginStatus {
@@ -49,7 +49,7 @@ class Login extends React.Component<any, any> {
         const { dispatch, token, clientId } = this.props;
         $http('login', { ...values, password: encryption(values.password, clientId, token) }).then(res => {
           if (res.code === 'SUCCESS') {
-            dispatch(setCurrentUser(res.data));
+            dispatch(setUser(res.data));
             this.props.history.push('/app/form'); //this.props.history获取路由信息
           } else {
             this.bindErrEvent(res);
@@ -153,7 +153,6 @@ class Login extends React.Component<any, any> {
 }
 const WrappedNormalLoginForm = Form.create()(Login);
 const mapStateToProps = state => {
-  console.log(state);
   return {
     token: state.currentUser.token,
     clientId: state.currentUser.clientId

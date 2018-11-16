@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import createHistory from 'history/createBrowserHistory'; //路由设置
 import { ConnectedRouter } from 'react-router-redux';
 import Routes from './routers/index';
-import configureStore from './redux/store';
+import configureStore from './store';
 import registerServiceWorker from './registerServiceWorker';
 import './styles/index.scss';
 

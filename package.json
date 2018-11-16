@@ -42,5 +42,5 @@
     "typescript": "^3.1.6",
     "webpackbar": "^3.1.2"
   },
-  "proxy": "http://scm.dev.cloudyigou.com"
+  "proxy": "http://brp.dev.cloudyigou.com"
 }

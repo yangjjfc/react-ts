@@ -89,11 +89,9 @@ class Interceptor {
         }
       }
       return response;
-    },
-      error => {
-        NProgress.done();
-        return Promise.reject(error);
-      }
+    }, error => {
+      return Promise.reject(error);
+    }
     );
   }
 }

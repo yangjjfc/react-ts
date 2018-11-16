@@ -16,3 +16,5 @@ https://blog.csdn.net/zw52yany/article/details/78688837 tslint
 
 
 - react-loadable: https://github.com/jamiebuilds/react-loadable //按需加载组件  
+
+npm install yarn tyarn -g

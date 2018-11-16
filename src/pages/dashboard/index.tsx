@@ -1,6 +1,9 @@
 import * as React from 'react';
-import { Layout, Menu, Icon } from 'antd';
 import { RouteComponentProps } from 'react-router-dom';
+import { Layout, Menu, Icon } from 'antd';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actions from 'src/store/action/index';
 import logins from '../login';
 import forms from '../form';
 import tables from '../table';
@@ -53,11 +56,11 @@ const rowSelection = {
     name: record.name,
   }),
 };
-export interface IHomePageProps extends RouteComponentProps<any> {
-  home: string;
-}
-class SiderDemo extends React.Component<IHomePageProps, any> {
-  constructor(props: IHomePageProps) {
+// export interface IHomePageProps extends RouteComponentProps<any> {
+//   home: string;
+// }
+class SiderDemo extends React.Component<any, any> {
+  constructor(props: any) {
     super(props);
 
   }
@@ -87,6 +90,10 @@ class SiderDemo extends React.Component<IHomePageProps, any> {
     // str = str.substring(0, 1).toUpperCase() + str.substring(1);
     this.getLocationHref(str);
   }
+  componentWillMount() {
+    const { getPermission } = this.props;
+    getPermission();
+  }
   componentDidMount() {
     const Auths = this.state.name;
 
@@ -96,7 +103,6 @@ class SiderDemo extends React.Component<IHomePageProps, any> {
   }
   render() {
     const Auths = this.state.name;
-    console.log(Auths);
     return (
       <Layout className='layout-container'>
         <Sider
@@ -138,4 +144,18 @@ class SiderDemo extends React.Component<IHomePageProps, any> {
   }
 }
 
-export default SiderDemo;
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    token: state.currentUser.token,
+    clientId: state.currentUser.clientId
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getPermission: bindActionCreators(actions.getPermission, dispatch)
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SiderDemo);
