@@ -1,60 +1,19 @@
 import * as React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { Layout, Menu, Icon } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from 'src/store/action/index';
-import logins from '../login';
-import forms from '../form';
-import tables from '../table';
+import login from '../login';
+import form from '../form';
+import table from '../table';
 import './index.scss';
-const sss = {
-  logins,
-  forms,
-  tables
-};
-const { Header, Sider, Content } = Layout;
-const columns = [{
-  title: 'Name',
-  dataIndex: 'name',
-  render: (text: any) => <a href='javascript:;'>{text}</a>,
-}, {
-  title: 'Age',
-  dataIndex: 'age',
-}, {
-  title: 'Address',
-  dataIndex: 'address',
-}];
-const data = [{
-  key: '1',
-  name: 'John Brown',
-  age: 32,
-  address: 'New York No. 1 Lake Park',
-}, {
-  key: '2',
-  name: 'Jim Green',
-  age: 42,
-  address: 'London No. 1 Lake Park',
-}, {
-  key: '3',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 21 Lake Park',
-}, {
-  key: '4',
-  name: 'Disabled User',
-  age: 99,
-  address: 'Sidney No. 1 Lake Park',
-}];
 
-const rowSelection = {
-  onChange: (selectedRowKeys, selectedRows) => {
-    console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-  },
-  getCheckboxProps: (record) => ({
-    disabled: record.name === 'Disabled User', // Column configuration not to be checked
-    name: record.name,
-  }),
+const { Header, Sider, Content } = Layout;
+const sss = {
+  login,
+  form,
+  table
 };
 // export interface IHomePageProps extends RouteComponentProps<any> {
 //   home: string;
@@ -67,7 +26,7 @@ class SiderDemo extends React.Component<any, any> {
   state = {
     collapsed: false,
     name: '',
-    checked: this.props.match.path
+    checked: this.props.match.url
   };
 
   toggle = () => {
@@ -76,33 +35,18 @@ class SiderDemo extends React.Component<any, any> {
     });
   }
   getLocationHref = (names?: any) => {
-    console.log(this.props.match);
-    names = names ? names : this.props.match.path.split('/').reverse()[0] + 's';
-    console.log(names);
-    this.setState({
-      name: sss[names]
-    });
+    names = names ? names : this.props.match.url.split('/').reverse()[0];
+    return sss[names];
   }
   handleMenu = ({ item, key, keyPath }) => {
-    const { history } = this.props;
+    const { history, dispatch } = this.props;
     history.push(key);
-    const str = key.split('/').reverse()[0] + 's';
-    // str = str.substring(0, 1).toUpperCase() + str.substring(1);
-    this.getLocationHref(str);
-  }
-  componentWillMount() {
-    const { getPermission } = this.props;
-    getPermission();
-  }
-  componentDidMount() {
-    const Auths = this.state.name;
-
-    if (!Auths) {
-      this.getLocationHref();
-    }
+    const str = key.split('/').reverse()[0];
+    dispatch(actions.setPathName({ name: '/app/' + str }));
+    this.props.history.push('/app/' + str);
   }
   render() {
-    const Auths = this.state.name;
+    const Auths: any = this.getLocationHref();
     return (
       <Layout className='layout-container'>
         <Sider
@@ -123,7 +67,7 @@ class SiderDemo extends React.Component<any, any> {
             </Menu.Item>
             <Menu.Item key='/app/table' >
               <Icon type='upload' />
-              <span>nav 3</span>
+              <span>nav x 3</span>
             </Menu.Item>
           </Menu>
         </Sider>
@@ -145,17 +89,10 @@ class SiderDemo extends React.Component<any, any> {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     token: state.currentUser.token,
     clientId: state.currentUser.clientId
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getPermission: bindActionCreators(actions.getPermission, dispatch)
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SiderDemo);
+export default withRouter<any>(connect(mapStateToProps)(SiderDemo));

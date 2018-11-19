@@ -3,6 +3,7 @@ import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import * as Loadable from 'react-loadable'; //懒加载1
 
 import Login from '../pages/login';
+import Myrouter from '../pages/router';
 
 const LoadableComponent = Loadable({
   loader: () => import('../pages/dashboard'),
@@ -16,10 +17,7 @@ const supportsHistory = 'pushState' in window.history;
 const Routes = (
   <BrowserRouter keyLength={12} forceRefresh={!supportsHistory}>
     <Switch>
-      <Route exact={true} path='/' component={Login} />
-      <Route path='/app/login' component={LoadableComponent} />
-      <Route path='/app/form' component={LoadableComponent} />
-      <Route path='/app/table' component={LoadableComponent} />
+      <Route exact={true} path='*' component={Myrouter} />
     </Switch>
   </BrowserRouter>
 );

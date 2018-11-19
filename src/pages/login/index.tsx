@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import $http from 'src/utils/axios/index';
 import encryption from 'src/utils/custom/encryption';
 
@@ -7,7 +8,7 @@ import * as actions from 'src/store/action/index';
 import { Form, Icon, Input, Button, Checkbox, Row, Col, Alert } from 'antd';
 import './index.scss';
 
-const { getUser, setUser } = actions;
+const { getUser, setUser, setPathName } = actions;
 const FormItem = Form.Item;
 
 // interface ILoginStatus {
@@ -19,6 +20,7 @@ const FormItem = Form.Item;
 //   loading: boolean;
 //   imgSrc: string;
 // }
+
 class Login extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
@@ -50,6 +52,7 @@ class Login extends React.Component<any, any> {
         $http('login', { ...values, password: encryption(values.password, clientId, token) }).then(res => {
           if (res.code === 'SUCCESS') {
             dispatch(setUser(res.data));
+            dispatch(setPathName({ name: '/app/form' }));
             this.props.history.push('/app/form'); //this.props.history获取路由信息
           } else {
             this.bindErrEvent(res);
@@ -159,4 +162,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(WrappedNormalLoginForm);
+export default withRouter<any>(connect(mapStateToProps)(WrappedNormalLoginForm));

@@ -21,6 +21,12 @@ export const setButton = msg => {
         type: ActionType.USER_BUTTON_PERMISSION
     };
 };
+export const setPathName = msg => {
+    return {
+        msg,
+        type: ActionType.USER_PATHNAME
+    };
+};
 
 /**
  * action函数
@@ -36,8 +42,8 @@ export const getUser = () => {
 
 //获取权限
 export const getPermission = () => {
-    return (dispatch) => {
-        $http('brp.user.getCurrentUserMenuRights').then(res => {
+    return async (dispatch) => {
+        await $http('brp.user.getCurrentUserMenuRights').then(res => {
             if (res.data) {
                 dispatch(setMenu(res.data.menuTree));
                 dispatch(setButton(res.data.permissionList));

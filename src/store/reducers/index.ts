@@ -13,8 +13,8 @@ const currentUser = (state = {}, action) => {
 };
 
 const defaultState = {
-    menu: {},
-    button: {}
+    menu: [],
+    button: []
 };
 const permission = (state = defaultState, action) => {
     switch (action.type) {
@@ -27,9 +27,20 @@ const permission = (state = defaultState, action) => {
             break;
     }
 };
+const routers = (state = {}, action) => {
+    switch (action.type) {
+        case ActionType.USER_PATHNAME:
+            return { ...state, ...action.msg };
+            break;
+        default:
+            return state;
+            break;
+    }
+};
 const rootReducer = combineReducers({
     currentUser,
-    permission
+    permission,
+    routers
 });
 
 export default rootReducer;
