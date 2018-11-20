@@ -20,7 +20,7 @@
             background: #fff;
             padding: 0;
         }
-        .trigger {
+        .icons {
             font-size: 18px;
             line-height: 64px;
             padding: 0 24px;
@@ -29,6 +29,11 @@
             &:hover {
                 color: #1890ff;
             }
+        }
+        .userinfo {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
         }
     }
 }

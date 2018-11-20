@@ -52,8 +52,10 @@ class Login extends React.Component<any, any> {
         $http('login', { ...values, password: encryption(values.password, clientId, token) }).then(res => {
           if (res.code === 'SUCCESS') {
             dispatch(setUser(res.data));
-            dispatch(setPathName({ name: '/app/form' }));
-            this.props.history.push('/app/form'); //this.props.history获取路由信息
+            dispatch(setPathName({ name: '/application/enterprise/index' }));
+            setTimeout(() => {
+              this.props.history.push('/application/enterprise/index'); //this.props.history获取路由信息
+            }, 200);
           } else {
             this.bindErrEvent(res);
           }
@@ -89,6 +91,7 @@ class Login extends React.Component<any, any> {
   }
   componentWillMount() {
     this.changeAuthImg();
+    console.log(222);
     const { dispatch } = this.props;
     dispatch(getUser());
   }
