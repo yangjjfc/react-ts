@@ -45,7 +45,7 @@ module.exports = function override(config, env) {
     config = rewireAliases.aliasesOptions({
         '@': path.resolve(__dirname, `${paths.appSrc}`)
     })(config, env);
-
+    //config.extensions = ['.js', '.jsx', '.tsx', '.json'];
     config.plugins = [...config.plugins, ...[new WebpackBar()]]
 
     return config;
