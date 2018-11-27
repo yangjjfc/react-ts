@@ -42,5 +42,13 @@
     "typescript": "^3.1.6",
     "webpackbar": "^3.1.2"
   },
+  "eslintConfig": {
+    "extends": "react-app",
+    "rules": {
+      "no-undef": "off",
+      "no-restricted-globals": "off",
+      "no-unused-vars": "off"
+    }
+  },
   "proxy": "http://brp.dev.cloudyigou.com"
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as Loadable from 'react-loadable'; //懒加载
+import Loadable from 'react-loadable'; //懒加载
 const MyLoadingComponent = ({ isLoading, error }) => {
     // Handle the loading state
     if (isLoading) {

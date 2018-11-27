@@ -51,6 +51,7 @@ class SiderBar extends React.Component<any, any> {
     render() {
         const { menu } = this.props.permission;
         const { keys, menus } = this.renderMenu(menu);
+
         return (
             <Sider
                 trigger={null}
@@ -58,7 +59,7 @@ class SiderBar extends React.Component<any, any> {
                 collapsed={this.props.collapsed}
                 className='layout-sider'
             >
-                <div className='logo'>yosemite</div>
+                <div className='logo' >yosemite</div>
                 <Menu theme='dark' mode='inline'
                     defaultSelectedKeys={[this.state.checked]}
                     defaultOpenKeys={keys}
