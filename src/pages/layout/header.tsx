@@ -14,7 +14,6 @@ class Cuslayout extends React.Component<any, any> {
         isConfirm: false
     };
     handleLogout = () => {
-
         $http('logout').then(() => {
             message.success('退出成功');
             window.location.href = '/login';

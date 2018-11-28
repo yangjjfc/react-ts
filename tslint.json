@@ -149,6 +149,9 @@
     "switch-final-break": [
       true,
       "always"
+    ],
+    "jsx-no-lambda": [
+      false
     ]
   },
   "linterOptions": {
