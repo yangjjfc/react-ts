@@ -10,7 +10,7 @@ class RegistrationForm extends React.Component<any, any> {
     render() {
 
         return (<div>
-            <Tabs defaultActiveKey='1' >
+            <Tabs defaultActiveKey='2' >
                 <TabPane tab='未入驻企业' key='1'>
                     <Nonactivated />
                 </TabPane>

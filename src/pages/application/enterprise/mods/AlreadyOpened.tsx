@@ -1,6 +1,7 @@
 import * as React from 'react';
 import $http from 'src/utils/axios/index';
 import AddApplication from './AddApplication';
+import ManageScope from './ManageScope';
 import { Input, Button, Form, Table, message, Popconfirm, Row } from 'antd';
 const { Column, ColumnGroup } = Table;
 const FormItem = Form.Item;
@@ -13,6 +14,7 @@ class AlreayOpened extends React.Component<any, any> {
     }
     state = {
         isOpen: false,
+        isManage: false,
         currentEnterpriseNo: '',
         page: {
             pageSize: 20,
@@ -61,11 +63,26 @@ class AlreayOpened extends React.Component<any, any> {
             isOpen: true
         });
     }
+    scope(row) {
+        this.setState({
+            currentEnterpriseNo: row.enterpriseNo,
+            isManage: true
+        });
+    }
     //更新组件状态
-    update = (type) => {
+    updateApp = (type) => {
         if (type === 'close') {
             this.setState({
                 isOpen: false
+            });
+        } else {
+            this.getList();
+        }
+    }
+    updateManage = (type) => {
+        if (type === 'close') {
+            this.setState({
+                isManage: false
             });
         } else {
             this.getList();
@@ -78,10 +95,13 @@ class AlreayOpened extends React.Component<any, any> {
             onChange: this.getList
         };
         const App = this.state.isOpen ? <AddApplication visible={this.state.isOpen} enterpriseNo={this.state.currentEnterpriseNo}
-            update={this.update} /> : null;
+            update={this.updateApp} /> : null;
+        const Manage = this.state.isManage ? <ManageScope visible={this.state.isManage} enterpriseNo={this.state.currentEnterpriseNo}
+            update={this.updateManage} /> : null;
         return (
             <div>
                 {App}
+                {Manage}
                 <Form layout='inline' onSubmit={this.handleSubmit}>
                     <FormItem>
                         {getFieldDecorator('keywords', {
@@ -129,7 +149,7 @@ class AlreayOpened extends React.Component<any, any> {
                         render={(text, record) => (
                             <div>
                                 <a href='javascript:void(0)' onClick={this.edit.bind(this, record)} style={{ paddingRight: '10px' }}>开通应用</a>
-                                <a href='javascript:void(0)' onClick={this.edit.bind(this, text)}>经营范围</a>
+                                <a href='javascript:void(0)' onClick={this.scope.bind(this, text)}>经营范围</a>
                             </div>
                         )}
                     />

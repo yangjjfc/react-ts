@@ -1,0 +1,19 @@
+{
+	"Print to console": {
+		"prefix": "tsx",
+		"body": [
+			"import * as React from 'react';",
+			"import { Table } from 'antd';",
+			"class $1 extends React.Component<any, any> {",
+			"constructor(props: any) {",
+			"super(props);",
+			"}",
+			"render() {",
+			"return (<div>新文件</div>);",
+			"}",
+			"}",
+			"export default $1;",
+		],
+		"description": "react模板"
+	}
+}
