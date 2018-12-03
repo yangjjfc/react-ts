@@ -61,7 +61,7 @@
       "check-parameters"
     ],
     "no-empty": [
-      true,
+      false,
       "allow-empty-catch"
     ],
     "no-empty-interface": false,
